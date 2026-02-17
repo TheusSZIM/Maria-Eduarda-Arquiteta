@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html class="scroll-smooth" lang="pt-BR"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Studio Arch | Arquitetura e Design</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,typography"></script>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Montserrat:wght@300;400;600;700&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+<script>
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        primary: "#B49B6A",
+                        "background-light": "#F9F9F9",
+                        "background-dark": "#121212",
+                        "accent-dark": "#1A1A1A",
+                    },
+                    fontFamily: {
+                        display: ["Montserrat", "sans-serif"],
+                        body: ["Inter", "sans-serif"],
+                    },
+                    borderRadius: {
+                        DEFAULT: "0.25rem",
+                    },
+                },
+            },
+        };
+    </script>
+<style type="text/tailwindcss">
+        .material-symbols-outlined {
+            font-variation-settings: 'wght' 200, 'opsz' 24;
+            font-size: 32px;
+        }
+        :root {
+            --primary-gold: #B49B6A;
+        }
+    </style>
+</head>
+<body class="font-body bg-background-light dark:bg-background-dark text-gray-800 dark:text-gray-200 transition-colors duration-300">
+<nav class="fixed w-full z-50 bg-white/80 dark:bg-black/80 backdrop-blur-md border-b border-gray-100 dark:border-gray-800">
+<div class="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-primary">architecture</span>
+<div class="leading-none">
+<h1 class="font-display font-bold text-xl tracking-tighter uppercase">Studio</h1>
+<p class="font-display text-sm tracking-widest text-primary -mt-1">Arch</p>
+</div>
+</div>
+<div class="hidden md:flex items-center gap-8">
+<a class="text-xs uppercase tracking-widest font-semibold text-primary" href="#">Início</a>
+<a class="text-xs uppercase tracking-widest font-medium hover:text-primary transition-colors" href="#about">Sobre</a>
+<a class="text-xs uppercase tracking-widest font-medium hover:text-primary transition-colors" href="#portfolio">Portfólio</a>
+<a class="text-xs uppercase tracking-widest font-medium hover:text-primary transition-colors" href="#services">Serviços</a>
+<a class="text-xs uppercase tracking-widest font-medium hover:text-primary transition-colors border border-gray-200 dark:border-gray-700 px-4 py-2 rounded-sm" href="#contact">Contato</a>
+</div>
+<button class="md:hidden material-symbols-outlined">menu</button>
+</div>
+</nav>
+<section class="relative h-screen flex items-center overflow-hidden">
+<div class="absolute inset-0 z-0">
+<img alt="Modern Architecture Hero" class="w-full h-full object-cover" src="fundo_casa.jpg"/>
+<div class="absolute inset-0 bg-black/40"></div>
+</div>
+<div class="relative z-10 max-w-7xl mx-auto px-6 w-full">
+<div class="max-w-2xl">
+<h2 class="font-display text-5xl md:text-6xl font-bold text-white leading-tight uppercase mb-6">
+                Projetos que transformam ideias em realidade
+            </h2>
+<p class="text-lg text-gray-200 font-light mb-8 max-w-lg">
+                Engenharia de precisão e design visionário para espaços excepcionais. Criamos ambientes que inspiram o seu dia a dia.
+            </p>
+<a class="inline-block bg-primary text-white px-8 py-4 text-xs font-bold uppercase tracking-widest hover:bg-opacity-90 transition-all" href="#portfolio">
+                Ver Portfólio
+            </a>
+</div>
+</div>
+</section>
+<section class="py-32 bg-white dark:bg-background-dark overflow-hidden" id="about">
+<div class="max-w-7xl mx-auto px-6 grid md:grid-cols-2 gap-24 items-center">
+<div class="relative group">
+<div class="absolute -top-10 -left-10 w-full h-full border border-primary/20 -z-10 translate-x-4 translate-y-4 transition-transform group-hover:translate-x-0 group-hover:translate-y-0 duration-700"></div>
+<div class="aspect-[4/5] overflow-hidden shadow-2xl">
+<img alt="Lead Architect Portrait" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" src="foto_arquiteta.png"/>
+</div>
+<div class="absolute -bottom-6 -right-6 bg-primary px-8 py-6 hidden md:block">
+<p class="text-white font-display font-bold uppercase tracking-widest text-xs">Arquiteta Sênior</p>
+<p class="text-white/80 text-[10px] uppercase tracking-tighter mt-1">Fundadora do Studio Arch</p>
+</div>
+</div>
+<div class="space-y-8">
+<div>
+<span class="text-primary font-display font-semibold uppercase tracking-[0.3em] text-xs">Desde 2010</span>
+<h3 class="font-display text-4xl md:text-5xl font-bold uppercase mt-4 mb-8 leading-tight">Excelência em cada traço</h3>
+</div>
+<div class="space-y-6 text-gray-600 dark:text-gray-400 font-light leading-relaxed text-lg">
+<p>
+                    Como arquiteta líder, acredito que o design de excelência nasce da harmonia entre a funcionalidade rigorosa e a sensibilidade estética. Meu trabalho foca em criar espaços que não apenas abrigam, mas elevam a experiência humana através de materiais nobres e luz natural.
+                </p>
+<p>
+                    Com mais de uma década de experiência no mercado de alto padrão, cada projeto é tratado como uma obra única, onde a precisão técnica se une à visão criativa para materializar os sonhos mais ambiciosos de nossos clientes.
+                </p>
+</div>
+<div class="pt-4 flex flex-wrap gap-12">
+<div>
+<p class="text-2xl font-display font-bold text-primary">150+</p>
+<p class="text-[10px] uppercase tracking-widest text-gray-400 font-bold">Projetos Concluídos</p>
+</div>
+<div>
+<p class="text-2xl font-display font-bold text-primary">12</p>
+<p class="text-[10px] uppercase tracking-widest text-gray-400 font-bold">Prêmios de Design</p>
+</div>
+</div>
+<button class="mt-4 border-b-2 border-primary text-primary pb-2 text-xs font-bold uppercase tracking-[0.2em] hover:text-gray-900 dark:hover:text-white hover:border-gray-900 dark:hover:border-white transition-all">
+                Conheça minha trajetória
+            </button>
+</div>
+</div>
+</section>
+<section class="py-24 bg-gray-50 dark:bg-accent-dark" id="services">
+<div class="max-w-7xl mx-auto px-6">
+<div class="text-center mb-16">
+<span class="text-primary text-[10px] font-bold uppercase tracking-[0.4em] block mb-4">Especialidades</span>
+<h3 class="font-display text-4xl font-bold uppercase mb-2">Serviços</h3>
+<div class="w-12 h-0.5 bg-primary mx-auto mt-4"></div>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-4 gap-12">
+<div class="text-center space-y-4 group">
+<div class="flex justify-center text-primary mb-4 transition-transform duration-300 group-hover:-translate-y-2">
+<span class="material-symbols-outlined !text-5xl">draw</span>
+</div>
+<h4 class="font-display font-bold text-sm uppercase tracking-wider">Projetos Técnicos</h4>
+<p class="text-xs text-gray-500 dark:text-gray-400 font-light leading-relaxed">
+                    Arquitetura detalhada e projetos executivos com máxima precisão técnica.
+                </p>
+</div>
+<div class="text-center space-y-4 group">
+<div class="flex justify-center text-primary mb-4 transition-transform duration-300 group-hover:-translate-y-2">
+<span class="material-symbols-outlined !text-5xl">view_in_ar</span>
+</div>
+<h4 class="font-display font-bold text-sm uppercase tracking-wider">Modelagem 3D</h4>
+<p class="text-xs text-gray-500 dark:text-gray-400 font-light leading-relaxed">
+                    Visualização realista que permite sentir o espaço antes mesmo de ser construído.
+                </p>
+</div>
+<div class="text-center space-y-4 group">
+<div class="flex justify-center text-primary mb-4 transition-transform duration-300 group-hover:-translate-y-2">
+<span class="material-symbols-outlined !text-5xl">architecture</span>
+</div>
+<h4 class="font-display font-bold text-sm uppercase tracking-wider">Detalhamento</h4>
+<p class="text-xs text-gray-500 dark:text-gray-400 font-light leading-relaxed">
+                    Documentação executiva completa para garantir a fidelidade absoluta do projeto.
+                </p>
+</div>
+<div class="text-center space-y-4 group">
+<div class="flex justify-center text-primary mb-4 transition-transform duration-300 group-hover:-translate-y-2">
+<span class="material-symbols-outlined !text-5xl">groups</span>
+</div>
+<h4 class="font-display font-bold text-sm uppercase tracking-wider">Consultoria</h4>
+<p class="text-xs text-gray-500 dark:text-gray-400 font-light leading-relaxed">
+                    Orientação estratégica para transformar suas necessidades em soluções elegantes.
+                </p>
+</div>
+</div>
+</div>
+</section>
+<section class="py-24 bg-white dark:bg-background-dark" id="portfolio">
+<div class="max-w-7xl mx-auto px-6">
+<div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+<div class="group relative overflow-hidden aspect-[4/3] bg-gray-100">
+<img alt="Residencial Project" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAY9AtkHCx8hmu4KqLRU15gqI7QzSaudt-wQ11BlSI4-pNh69DxWqjKANwWBVFyA_4bwF52t1EC36efePIVdV2ijdnp2G7983mJulw-3SoFprXOYSbBhQzua8bpC0psZr5oZuBtZpYS37HIIC3Ip0DKaOluCJSrg15X4lbYtl_7CSpvg6qKVl_9ngiXdRsC2KFLonjhXL8UydtdskKj7ujzyNeKFnR2NIvLt3m3TpdjkIju7peJ9XNuzbAEcFFZ6Bp2mxBzSklF-Q"/>
+<div class="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-end p-8">
+<h4 class="text-white font-display font-bold uppercase tracking-widest text-lg">Projeto Residencial</h4>
+<p class="text-primary text-xs uppercase mt-1">Residencial</p>
+</div>
+</div>
+<div class="group relative overflow-hidden aspect-[4/3] bg-gray-100">
+<img alt="Comercial Project" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDi8UYcY_aJ4mB9llBFwM-Pc66KsSCyL6lUsoBxmtgbJAyAlBfYnv6qLp1Zc9KxuVz82YTn9wW_Nv4pfGAaJ7Adl_qEEpJneknhdqiKmt5SaRFAKJgrceTYTjWRxjhZPcSldDOHjVR23XI-_4xJboEnV11LdpkvuYmTTqFFJ7WjawSIz1cHgJsdoUR7r0dC1wr1Jy5OGNBVo59aTCbiSRgzZSVHzESlbln2Eb5QdMOFTEpHzrBce_WB6wjQ2tZWJIhdEcKyfPVFug"/>
+<div class="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-end p-8">
+<h4 class="text-white font-display font-bold uppercase tracking-widest text-lg">Projeto Comercial</h4>
+<p class="text-primary text-xs uppercase mt-1">Corporativo</p>
+</div>
+</div>
+<div class="group relative overflow-hidden aspect-[4/3] bg-gray-100">
+<img alt="Industrial Project" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDQ4_GNwD_D7kBreEJLwZwCqwAqs3qHboaax6qyz-1ELQTmpbQitthAQaqL41i3cpLgiLn3BErV6aQxHCYonUW6Yc-Oi8o0x067uws2xhSrr60RUAfhvGRnmk750CUVdyNVqss4KKdkuonRes_ldGJZuX7LSKSMYV_p0_G3bBqeqjRDOBcxkaEL4LJNehuy9JDvyD-nakjw3TFW8PKY0AGaO8k_kInU47z4ybUxtXdYBRdoxxl0D55okqFYnlLpkYGCUIWvvb2HZg"/>
+<div class="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-end p-8">
+<h4 class="text-white font-display font-bold uppercase tracking-widest text-lg">Projeto Industrial</h4>
+<p class="text-primary text-xs uppercase mt-1">Logística</p>
+</div>
+</div>
+<div class="group relative overflow-hidden aspect-[4/3] bg-gray-100">
+<img alt="Modern House" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" src="https://lh3.googleusercontent.com/aida-public/AB6AXuC67Pwt9I53IRLUk-7RPcRSN8HUmvONXTAsRrsP4oZ3LdUxPQCSqrwtjYop01YDCrN9bTDqvr3yRoH_LWoD7BlAYdmi63R18_Hg14dWZ000W0KwPw_a3BkbxllikBcs3JpDsrfNGpqR7m_FdcT9EAvF0EodKaxbVu1wg5bdeaT_E0DMGjdVFTwkGtBKUfHDUANyaQMgqvct6JPCM-G4wj2pfFAx2gosbenDdKPGf8fJyP3753RYr576UsvvsXZl-228D5MkUEfk2A"/>
+<div class="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-end p-8">
+<h4 class="text-white font-display font-bold uppercase tracking-widest text-lg">Residência Vale</h4>
+<p class="text-primary text-xs uppercase mt-1">Arquitetura</p>
+</div>
+</div>
+<div class="group relative overflow-hidden aspect-[4/3] bg-gray-100">
+<img alt="Office Building" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAinCPhKZV_7SgI_A1bh0AgWj3r0qGu5x4K7JkNAIof_pltZY2hLTvRUUUn5HEIFUwa97MhTK1GSELQrJsw4RyCjVhj_hGsibLjp8_aMfCjiovBAhubdiMChmxYoR8CP2MJqp2XRtPKN1xC2J8tMALeVEiCfrVH1KbmuL8XapmP4-38_i4bBw-F3A7z2pBpAhiyOqIpzj8PU1vuOvtw3kunPPInei8P2BbL348cflJoiFeSUlOgt9GjMIh3qvh57ZWHSaD3MiTMvQ"/>
+<div class="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-end p-8">
+<h4 class="text-white font-display font-bold uppercase tracking-widest text-lg">Edifício Nexus</h4>
+<p class="text-primary text-xs uppercase mt-1">Executivo</p>
+</div>
+</div>
+<div class="group relative overflow-hidden aspect-[4/3] bg-gray-100">
+<img alt="Luxury Villa" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAC4UZXrERLheUtyTBUB5KPvySW44M39frzbp3essRS5NVJrhS5ePqrs3TXN1WkZXINx29-YNP1VvEYaHsnzT3b9_xg4M1ojEnm2A_YkN0PQj8eC-cqB77sDwf2-LWlGZ0Ums7ag8rLdKn44KIZJSCTqtLDidA_bT3ah5K8rZp5rDLGRWlIbHQBD4NIpBV2QSIIzO4uVRDvP2g2kYDuU5vP-i3pjSTYrJq6zq_Z1rrGx-kTKJ5KXEwv21tHGywjpVzAoYscNvq_aw"/>
+<div class="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-end p-8">
+<h4 class="text-white font-display font-bold uppercase tracking-widest text-lg">Villa Serena</h4>
+<p class="text-primary text-xs uppercase mt-1">Minimalista</p>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section class="py-24 bg-gray-50 dark:bg-accent-dark">
+<div class="max-w-7xl mx-auto px-6">
+<div class="text-center mb-16">
+<h3 class="font-display text-4xl font-bold uppercase mb-2">Testimonials</h3>
+<div class="w-12 h-1 bg-primary mx-auto"></div>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+<div class="bg-white dark:bg-background-dark p-8 rounded-sm shadow-sm border border-gray-100 dark:border-gray-800">
+<p class="text-sm text-gray-500 dark:text-gray-400 italic mb-8 leading-relaxed">
+                    "O Studio Arch transformou nossa casa em um refúgio de paz. A atenção aos detalhes da arquiteta foi fundamental para o resultado final impecável."
+                </p>
+<div class="flex items-center gap-4">
+<img alt="Client 1" class="w-10 h-10 rounded-full object-cover grayscale" src="https://lh3.googleusercontent.com/aida-public/AB6AXuA23w4iQJJrxxHtMONh4vhDRQPze6yhFR67DvBoLnySBom3d6B4dO-uRKN97v4LZmV5_y-lFCCLinjpdOMafh9EVDcJqnfgTnIMtsUaajqYjmh1XZRpsBzUUyQQXi4NpR_hPMVImBdQOIrfu2e9taMqhUtQd9TzhiL6Ecux1PIZWVAbaup2XHnntpKYlLvVzrA2ShmcEpwQUk7DEbhHTZSoEiIaVp_09h2zasnIq44Unp2jf2ouzo278u9wD9y_KB5jcDVpA1iTKg"/>
+<div>
+<h5 class="text-sm font-bold uppercase tracking-tighter">Marcos Silva</h5>
+<p class="text-[10px] text-primary uppercase font-bold tracking-widest">Empresário</p>
+</div>
+</div>
+</div>
+<div class="bg-white dark:bg-background-dark p-8 rounded-sm shadow-sm border border-gray-100 dark:border-gray-800 scale-105 border-primary/30">
+<p class="text-sm text-gray-500 dark:text-gray-400 italic mb-8 leading-relaxed">
+                    "O cuidado com os detalhes e a entrega impecável superaram todas as expectativas que tínhamos para nossa nova sede corporativa."
+                </p>
+<div class="flex items-center gap-4">
+<img alt="Client 2" class="w-10 h-10 rounded-full object-cover grayscale" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDkWzb9daTL8WzZneTvDu10-87Kw93fZ4bUdvuDAOy717tLkJghxWHnR-WX7kLb77e9Ff8oucZGBYcE7aMY2Se_VkXYSzUmG-joOP5AiBdXmLVhd39o7cwohptInZCpV__AAs5vaQXgFFwmmZ6I5TmQj6f5SN9zZVDL8ymaguTWafF9kSdXHJwttPCATadBQStAh3qzEdMgh23NBee0TCXZK11O5nmOF4w8Xkc9MNVQO0ABl-dThEcRlIHr449BSQuZe3gRWogGNQ"/>
+<div>
+<h5 class="text-sm font-bold uppercase tracking-tighter">Carla Mendes</h5>
+<p class="text-[10px] text-primary uppercase font-bold tracking-widest">Diretora Executiva</p>
+</div>
+</div>
+</div>
+<div class="bg-white dark:bg-background-dark p-8 rounded-sm shadow-sm border border-gray-100 dark:border-gray-800">
+<p class="text-sm text-gray-500 dark:text-gray-400 italic mb-8 leading-relaxed">
+                    "Profissionalismo e visão técnica de alto nível. Recomendo para qualquer projeto que exija sofisticação e precisão arquitetônica."
+                </p>
+<div class="flex items-center gap-4">
+<img alt="Client 3" class="w-10 h-10 rounded-full object-cover grayscale" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCktr7e0Eo4W_XxzhgCWbwnrD4bTyq9RP2seyXG9gr51HSzO1kbx_WpoR4rxlorF5whhHjlXXYDnUxfbF7YWtpoxK_SgnsHF4aSgS2oZ34iVsm09UrqLe1R90CVqI67jP0Ewl9sy7W9zYZkjXxBZEpqeV3Hmzh-i__fD4YhYo3W28EMkdIJNTc95kajrGGs22swZsyVi06nvwGb4dtvRIxhZ1D0Mx6Dvf123Mk0k8Jkhu1acne5VFixb-kuWxLz-hMIu3cpchSbKw"/>
+<div>
+<h5 class="text-sm font-bold uppercase tracking-tighter">Roberto Lima</h5>
+<p class="text-[10px] text-primary uppercase font-bold tracking-widest">Engenheiro Civil</p>
+</div>
+</div>
+</div>
+</div>
+<div class="flex justify-center gap-2 mt-12">
+<div class="w-2 h-2 rounded-full bg-primary"></div>
+<div class="w-2 h-2 rounded-full bg-gray-300 dark:bg-gray-700"></div>
+<div class="w-2 h-2 rounded-full bg-gray-300 dark:bg-gray-700"></div>
+</div>
+</div>
+</section>
+<footer class="bg-black text-white pt-24 pb-12" id="contact">
+<div class="max-w-7xl mx-auto px-6">
+<div class="grid grid-cols-1 md:grid-cols-4 gap-12 mb-20">
+<div class="space-y-6">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-primary">architecture</span>
+<div class="leading-none">
+<h1 class="font-display font-bold text-xl tracking-tighter uppercase">Studio</h1>
+<p class="font-display text-sm tracking-widest text-primary -mt-1">Arch</p>
+</div>
+</div>
+<p class="text-xs text-gray-500 leading-relaxed max-w-xs">
+                    Elevando o padrão da arquitetura moderna através de processos inovadores e design atemporal sob o olhar de quem entende de sofisticação.
+                </p>
+</div>
+<div class="space-y-6">
+<h5 class="text-xs font-bold uppercase tracking-widest">Contato e Info</h5>
+<ul class="text-xs text-gray-400 space-y-4">
+<li class="flex items-center gap-3">
+<span class="material-symbols-outlined !text-sm text-primary">mail</span>
+                        contato@studioarch.com
+                    </li>
+<li class="flex items-center gap-3">
+<span class="material-symbols-outlined !text-sm text-primary">call</span>
+                        +55 (11) 99999-0000
+                    </li>
+<li class="flex items-center gap-3">
+<span class="material-symbols-outlined !text-sm text-primary">location_on</span>
+                        Av. Arquitetura, 1000 - SP
+                    </li>
+</ul>
+</div>
+<div class="space-y-6">
+<h5 class="text-xs font-bold uppercase tracking-widest">Serviços</h5>
+<ul class="text-xs text-gray-400 space-y-4">
+<li><a class="hover:text-primary transition-colors" href="#">Projetos Técnicos</a></li>
+<li><a class="hover:text-primary transition-colors" href="#">Modelagem 3D</a></li>
+<li><a class="hover:text-primary transition-colors" href="#">Detalhamento Executivo</a></li>
+</ul>
+</div>
+<div class="space-y-6">
+<h5 class="text-xs font-bold uppercase tracking-widest">Redes Sociais</h5>
+<div class="flex gap-4">
+<a class="w-8 h-8 rounded-full border border-gray-800 flex items-center justify-center hover:bg-primary hover:border-primary transition-all" href="#">
+<img alt="Instagram" class="w-4 h-4 invert" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBPP-PQL8rYa_MSoz10-KIvjspHq2w6ahkLmBD1W0yRIek_IBRNOBgWWahLllwegysBtT0kLf3pyaHOCaIBuY7qeuGKFk1O4wag9RXcL7ip4iBsMgE-7RRMRingN5491RZczJ7DcGiVk1N3rvBJ12hbnmQ8EaDLDCChitP9WkZhNfYAxwXIuIWlpFuqx4jOfDU5xRM1X1-It-3pP7ni71wo0aw-nWH_9I7knrWNCYKIK57LGXShmCdRPcCrSscwOga3iHfXhdm9wg"/>
+</a>
+<a class="w-8 h-8 rounded-full border border-gray-800 flex items-center justify-center hover:bg-primary hover:border-primary transition-all" href="#">
+<img alt="Facebook" class="w-4 h-4 invert" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCh4RATXGE2yz1Y68nFnD_ftpHE9FzZ6NINc5lnfsbbO0-gkdB1ypLcNERN_hs9wa-U18YVCTZw4p_o77pjY08YYJWuArnqu16aywkvbcb7pTRJ4sUz3H5vfzNfyKEXHkUOJUgElQQe_Jmt0dKwaiqIeuQdha3xTl0KSoEPolAcjZ-gF6cMaS4sMrYfy4r2vNv0ospxFOvybwVrzKCCUjIaNY5Ar76_yvfxj9vJyX6Y3CaYlp9OHp3YbkBS8C3yOjFKKHosbyoASQ"/>
+</a>
+<a class="w-8 h-8 rounded-full border border-gray-800 flex items-center justify-center hover:bg-primary hover:border-primary transition-all" href="#">
+<img alt="LinkedIn" class="w-4 h-4 invert" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBzX1z1fjeUJ1BhCwCfbEdSUwS94wj_-KzWAVN_5xrxUPAcTSaY43-sWvc1eYzLqvVl-BxZ85zNDe7qO8TLtneZZbVgQ2AttzFUgJjQYokldk6G5NJYbXoBKivpTXMiGveqcbwjNXt_90Y3LS4gT5IE5s-ZdvDavkzFoTKFRJoF1ZhHKacnCYKC97J6fcigFzRZdmizRpzWIUcS_K2q8e3BjV2gYR3qJaL5zIF3_KLeku9-ywgh4b5LqHrxB3H9vdiDQ_jtHCrnfQ"/>
+</a>
+</div>
+<div class="pt-4 flex justify-end opacity-20">
+<span class="material-symbols-outlined !text-6xl">grade</span>
+</div>
+</div>
+</div>
+<div class="pt-12 border-t border-gray-900 flex flex-col md:flex-row justify-between items-center gap-4 text-[10px] text-gray-600 uppercase tracking-widest">
+<p>© 2024 Studio Arch. Todos os direitos reservados.</p>
+<div class="flex gap-8">
+<a class="hover:text-white transition-colors" href="#">Privacidade</a>
+<a class="hover:text-white transition-colors" href="#">Termos</a>
+</div>
+</div>
+</div>
+</footer>
+<a class="fixed bottom-8 right-8 w-12 h-12 bg-primary text-white flex items-center justify-center rounded-sm shadow-2xl z-40 hover:-translate-y-1 transition-transform" href="#">
+<span class="material-symbols-outlined">expand_less</span>
+</a>
+
+</body></html>
