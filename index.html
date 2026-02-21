@@ -1,25 +1,934 @@
 <!DOCTYPE html>
-<html lang="pt-BR">
+<html class="scroll-smooth" lang="pt-BR">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Maria Eduarda | Arquitetura</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script src="/assets/main.js" defer></script>
+    <title>Studio Arch | Arquitetura e Design</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,typography"></script>
+    <link href="https://fonts.googleapis.com" rel="preconnect"/>
+    <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Montserrat:wght@300;400;600;700&display=swap" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+    <script>
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        primary: "#B49B6A",
+                        "primary-light": "#D4C4A0",
+                        "warm-gray": "#EAE7E1",
+                        "background-light": "#F9F9F9",
+                        "background-dark": "#121212",
+                        "accent-dark": "#1A1A1A",
+                    },
+                    fontFamily: {
+                        display: ["Montserrat", "sans-serif"],
+                        body: ["Inter", "sans-serif"],
+                    },
+                },
+            },
+        };
+    </script>
+    <style type="text/tailwindcss">
+        @layer base {
+            html {
+                scroll-behavior: smooth;
+            }
+            
+            /* CURSOR PERSONALIZADO */
+            .custom-cursor {
+                width: 20px;
+                height: 20px;
+                border: 1px solid #B49B6A;
+                border-radius: 50%;
+                position: fixed;
+                pointer-events: none;
+                z-index: 9999;
+                transition: transform 0.15s ease, width 0.2s ease, height 0.2s ease;
+                mix-blend-mode: difference;
+            }
+            
+            .custom-cursor.hover {
+                transform: scale(2);
+                background: rgba(180, 155, 106, 0.1);
+            }
+            
+            /* SELEÇÃO DE TEXTO DOURADA */
+            ::selection {
+                background: rgba(180, 155, 106, 0.3);
+                color: inherit;
+            }
+            
+            /* NAVBAR GLASSMORPHISM */
+            .navbar-glass {
+                background: rgba(255, 255, 255, 0.1);
+                backdrop-filter: blur(20px);
+                -webkit-backdrop-filter: blur(20px);
+                border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            }
+            
+            .navbar-solid {
+                background: rgba(255, 255, 255, 0.95);
+                backdrop-filter: blur(20px);
+                box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+            }
+            
+            .dark .navbar-solid {
+                background: rgba(18, 18, 18, 0.95);
+            }
+            
+            /* LINK COM LINHA ANIMADA */
+            .nav-link {
+                position: relative;
+                overflow: hidden;
+            }
+            
+            .nav-link::after {
+                content: '';
+                position: absolute;
+                bottom: -4px;
+                left: 50%;
+                width: 0;
+                height: 1px;
+                background: #B49B6A;
+                transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+                transform: translateX(-50%);
+            }
+            
+            .nav-link:hover::after,
+            .nav-link.active::after {
+                width: 100%;
+            }
+            
+            /* BOTÃO PREMIUM */
+            .btn-premium {
+                position: relative;
+                overflow: hidden;
+                transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            }
+            
+            .btn-premium::before {
+                content: '';
+                position: absolute;
+                top: 0;
+                left: -100%;
+                width: 100%;
+                height: 100%;
+                background: linear-gradient(90deg, 
+                    transparent 0%, 
+                    rgba(255, 255, 255, 0.2) 50%, 
+                    transparent 100%);
+                transition: left 0.6s ease;
+            }
+            
+            .btn-premium:hover::before {
+                left: 100%;
+            }
+            
+            .btn-premium:hover {
+                transform: translateY(-2px) scale(1.03);
+                box-shadow: 0 10px 40px rgba(180, 155, 106, 0.4);
+            }
+            
+            /* ANIMAÇÃO DE ENTRADA DO TÍTULO */
+            .title-reveal {
+                opacity: 0;
+                transform: translateY(40px);
+                animation: titleReveal 1s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+            }
+            
+            .title-reveal:nth-child(1) { animation-delay: 0.2s; }
+            .title-reveal:nth-child(2) { animation-delay: 0.4s; }
+            .title-reveal:nth-child(3) { animation-delay: 0.6s; }
+            
+            @keyframes titleReveal {
+                to {
+                    opacity: 1;
+                    transform: translateY(0);
+                }
+            }
+            
+            /* OVERLAY CINEMATOGRÁFICO */
+            .cinematic-overlay {
+                background: linear-gradient(90deg, 
+                    rgba(0, 0, 0, 0.75) 0%, 
+                    rgba(0, 0, 0, 0.4) 40%, 
+                    rgba(0, 0, 0, 0.1) 100%);
+            }
+            
+            /* PARALLAX SUAVE */
+            .parallax-bg {
+                will-change: transform;
+                transition: transform 0.1s linear;
+            }
+            
+            /* GRID ASSIMÉTRICO PORTFÓLIO */
+            .portfolio-grid {
+                display: grid;
+                grid-template-columns: repeat(12, 1fr);
+                gap: 1.5rem;
+            }
+            
+            .portfolio-item:nth-child(1) { grid-column: span 7; grid-row: span 2; }
+            .portfolio-item:nth-child(2) { grid-column: span 5; }
+            .portfolio-item:nth-child(3) { grid-column: span 5; }
+            .portfolio-item:nth-child(4) { grid-column: span 4; }
+            .portfolio-item:nth-child(5) { grid-column: span 4; }
+            .portfolio-item:nth-child(6) { grid-column: span 4; }
+            
+            /* EFEITO HOVER PORTFÓLIO */
+            .portfolio-hover {
+                position: relative;
+                overflow: hidden;
+            }
+            
+            .portfolio-hover img {
+                transition: transform 1.2s cubic-bezier(0.4, 0, 0.2, 1);
+            }
+            
+            .portfolio-hover:hover img {
+                transform: scale(1.08);
+            }
+            
+            .portfolio-overlay {
+                position: absolute;
+                inset: 0;
+                background: linear-gradient(to top, 
+                    rgba(0, 0, 0, 0.8) 0%, 
+                    rgba(0, 0, 0, 0.4) 50%, 
+                    transparent 100%);
+                opacity: 0;
+                transition: opacity 0.6s ease;
+            }
+            
+            .portfolio-hover:hover .portfolio-overlay {
+                opacity: 1;
+            }
+            
+            .portfolio-content {
+                position: absolute;
+                bottom: 0;
+                left: 0;
+                right: 0;
+                padding: 2rem;
+                transform: translateY(20px);
+                opacity: 0;
+                transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+            }
+            
+            .portfolio-hover:hover .portfolio-content {
+                transform: translateY(0);
+                opacity: 1;
+            }
+            
+            /* REVEAL SCROLL */
+            .reveal {
+                opacity: 0;
+                transform: translateY(30px);
+                transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+            }
+            
+            .reveal.active {
+                opacity: 1;
+                transform: translateY(0);
+            }
+            
+            /* CONTADOR ANIMADO */
+            .counter {
+                font-variant-numeric: tabular-nums;
+            }
+            
+            /* CARD DESTAQUE */
+            .feature-card {
+                transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            }
+            
+            .feature-card:hover {
+                transform: translateY(-8px);
+                box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+            }
+            
+            /* LINHA DO TEMPO */
+            .timeline-line {
+                position: absolute;
+                left: 50%;
+                top: 0;
+                bottom: 0;
+                width: 1px;
+                background: linear-gradient(to bottom, transparent, #B49B6A, transparent);
+            }
+            
+            /* SCROLLBAR PERSONALIZADA */
+            ::-webkit-scrollbar {
+                width: 8px;
+            }
+            
+            ::-webkit-scrollbar-track {
+                background: #f1f1f1;
+            }
+            
+            ::-webkit-scrollbar-thumb {
+                background: #B49B6A;
+                border-radius: 4px;
+            }
+            
+            /* MOBILE MENU */
+            .mobile-menu {
+                clip-path: circle(0% at calc(100% - 40px) 40px);
+                transition: clip-path 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+            }
+            
+            .mobile-menu.active {
+                clip-path: circle(150% at calc(100% - 40px) 40px);
+            }
+            
+            /* PULSE SUTIL */
+            @keyframes subtlePulse {
+                0%, 100% { box-shadow: 0 0 0 0 rgba(180, 155, 106, 0.4); }
+                50% { box-shadow: 0 0 0 15px rgba(180, 155, 106, 0); }
+            }
+            
+            .pulse-glow {
+                animation: subtlePulse 3s infinite;
+            }
+        }
+    </style>
 </head>
-<body class="bg-black text-white">
-    <nav class="fixed w-full z-50 p-6 flex justify-between">
-        <div class="logo">STUDIO ARCH</div>
-        <div class="flex gap-8">
-            <a href="/">INÍCIO</a>
-            <a href="/sobre">SOBRE</a>
-            <a href="/portfolio">PORTFÓLIO</a>
-            <a href="/contato">CONTATO</a>
+<body class="font-body bg-background-light dark:bg-background-dark text-gray-800 dark:text-gray-200 transition-colors duration-300 overflow-x-hidden">
+    
+    <!-- CURSOR PERSONALIZADO (DESKTOP) -->
+    <div class="custom-cursor hidden lg:block" id="cursor"></div>
+
+    <!-- NAVBAR -->
+    <nav class="fixed w-full z-50 navbar-glass transition-all duration-500" id="navbar">
+        <div class="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
+            <div class="flex items-center gap-3 cursor-pointer group">
+                <span class="material-symbols-outlined text-primary text-3xl transition-transform duration-300 group-hover:rotate-12">architecture</span>
+                <div class="leading-none">
+                    <h1 class="font-display font-bold text-xl tracking-tighter uppercase">Studio</h1>
+                    <p class="font-display text-sm tracking-[0.3em] text-primary -mt-1 font-medium">Arch</p>
+                </div>
+            </div>
+            
+            <div class="hidden md:flex items-center gap-10">
+                <a class="nav-link text-xs uppercase tracking-[0.2em] font-medium hover:text-primary transition-colors active" href="#hero">Início</a>
+                <a class="nav-link text-xs uppercase tracking-[0.2em] font-medium hover:text-primary transition-colors" href="#about">Sobre</a>
+                <a class="nav-link text-xs uppercase tracking-[0.2em] font-medium hover:text-primary transition-colors" href="#portfolio">Portfólio</a>
+                <a class="nav-link text-xs uppercase tracking-[0.2em] font-medium hover:text-primary transition-colors" href="#services">Serviços</a>
+                <a class="btn-premium bg-primary text-white px-6 py-3 text-[10px] font-bold uppercase tracking-[0.2em] rounded-sm pulse-glow" href="#contact">Contato</a>
+            </div>
+            
+            <button class="md:hidden material-symbols-outlined text-2xl" id="menuBtn">menu</button>
         </div>
     </nav>
 
-    <section id="hero" class="h-screen flex items-center px-6">
-        <h1 class="text-7xl font-bold uppercase reveal">Arquitetura<br><span class="text-primary">Estratégica</span></h1>
+    <!-- MOBILE MENU -->
+    <div class="mobile-menu fixed inset-0 bg-white dark:bg-background-dark z-40 flex flex-col items-center justify-center gap-8 md:hidden" id="mobileMenu">
+        <a class="text-2xl font-display font-bold uppercase tracking-widest mobile-link" href="#hero">Início</a>
+        <a class="text-2xl font-display font-bold uppercase tracking-widest mobile-link" href="#about">Sobre</a>
+        <a class="text-2xl font-display font-bold uppercase tracking-widest mobile-link" href="#portfolio">Portfólio</a>
+        <a class="text-2xl font-display font-bold uppercase tracking-widest mobile-link" href="#services">Serviços</a>
+        <a class="text-2xl font-display font-bold uppercase tracking-widest text-primary mobile-link" href="#contact">Contato</a>
+    </div>
+
+    <!-- HERO SECTION -->
+    <section class="relative h-screen w-full overflow-hidden flex items-center" id="hero">
+        <!-- Background com Parallax -->
+        <div class="absolute inset-0 parallax-bg" id="heroBg">
+            <img alt="Modern Architecture" class="w-full h-full object-cover scale-110" src="https://kimi-web-img.moonshot.cn/img/thumbs.dreamstime.com/837f804a7c5ba54175bdd817e204a2a32dc5fd25.jpg"/>
+        </div>
+        
+        <!-- Overlay Cinematográfico -->
+        <div class="cinematic-overlay absolute inset-0"></div>
+        
+        <!-- Efeito de Luz Dourada -->
+        <div class="absolute top-0 right-0 w-1/2 h-full bg-gradient-to-l from-primary/10 to-transparent pointer-events-none"></div>
+        
+        <!-- Conteúdo -->
+        <div class="relative z-10 max-w-7xl mx-auto px-6 w-full pt-20">
+            <div class="max-w-3xl">
+                <p class="text-primary text-xs uppercase tracking-[0.4em] mb-6 title-reveal font-semibold">Arquitetura & Design</p>
+                
+                <h1 class="font-display text-5xl md:text-7xl lg:text-8xl font-bold text-white leading-[0.9] uppercase mb-8">
+                    <span class="block title-reveal">Projetos que</span>
+                    <span class="block title-reveal text-primary">Transformam</span>
+                    <span class="block title-reveal">Ideias em Realidade</span>
+                </h1>
+                
+                <p class="text-lg text-gray-200 font-light mb-10 max-w-xl leading-relaxed title-reveal border-l-2 border-primary pl-6">
+                    Engenharia de precisão e design visionário para espaços excepcionais. Criamos ambientes que inspiram o seu dia a dia.
+                </p>
+                
+                <div class="flex flex-col sm:flex-row gap-4 title-reveal">
+                    <a class="btn-premium bg-primary text-white px-10 py-4 text-xs font-bold uppercase tracking-[0.2em] rounded-sm inline-flex items-center gap-3 group" href="#portfolio">
+                        Ver Portfólio
+                        <span class="material-symbols-outlined text-lg transition-transform duration-300 group-hover:translate-x-1">arrow_forward</span>
+                    </a>
+                    <a class="border border-white/30 text-white px-10 py-4 text-xs font-bold uppercase tracking-[0.2em] rounded-sm hover:bg-white hover:text-black transition-all duration-300" href="#contact">
+                        Fale Conosco
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Scroll Indicator -->
+        <div class="absolute bottom-10 left-1/2 transform -translate-x-1/2 flex flex-col items-center gap-2 opacity-70">
+            <span class="text-[10px] uppercase tracking-[0.3em] text-white">Scroll</span>
+            <div class="w-[1px] h-12 bg-gradient-to-b from-primary to-transparent"></div>
+        </div>
     </section>
+
+    <!-- DESTAQUES (3 PILARES) -->
+    <section class="py-20 bg-warm-gray dark:bg-accent-dark">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div class="feature-card bg-white dark:bg-background-dark p-10 text-center reveal">
+                    <div class="w-16 h-16 mx-auto mb-6 rounded-full bg-primary/10 flex items-center justify-center">
+                        <span class="material-symbols-outlined text-primary text-3xl">emoji_events</span>
+                    </div>
+                    <h3 class="font-display font-bold text-lg uppercase tracking-wider mb-3">Excelência</h3>
+                    <p class="text-sm text-gray-500 dark:text-gray-400 font-light leading-relaxed">Mais de 150 projetos premiados com atenção meticulosa a cada detalhe arquitetônico.</p>
+                </div>
+                
+                <div class="feature-card bg-white dark:bg-background-dark p-10 text-center reveal stagger-1">
+                    <div class="w-16 h-16 mx-auto mb-6 rounded-full bg-primary/10 flex items-center justify-center">
+                        <span class="material-symbols-outlined text-primary text-3xl">lightbulb</span>
+                    </div>
+                    <h3 class="font-display font-bold text-lg uppercase tracking-wider mb-3">Inovação</h3>
+                    <p class="text-sm text-gray-500 dark:text-gray-400 font-light leading-relaxed">Tecnologia de ponta em modelagem 3D e visualização arquitetônica realista.</p>
+                </div>
+                
+                <div class="feature-card bg-white dark:bg-background-dark p-10 text-center reveal stagger-2">
+                    <div class="w-16 h-16 mx-auto mb-6 rounded-full bg-primary/10 flex items-center justify-center">
+                        <span class="material-symbols-outlined text-primary text-3xl">handshake</span>
+                    </div>
+                    <h3 class="font-display font-bold text-lg uppercase tracking-wider mb-3">Compromisso</h3>
+                    <p class="text-sm text-gray-500 dark:text-gray-400 font-light leading-relaxed">Acompanhamento completo desde a concepção até a entrega final da obra.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- PORTFÓLIO (GRID PREMIUM) -->
+    <section class="py-32 bg-white dark:bg-background-dark" id="portfolio">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="flex flex-col md:flex-row md:items-end md:justify-between mb-16">
+                <div>
+                    <span class="text-primary text-[10px] font-bold uppercase tracking-[0.4em] block mb-4 reveal">Portfólio Selecionado</span>
+                    <h2 class="font-display text-4xl md:text-5xl font-bold uppercase reveal stagger-1">Obras de Arte<br/>Arquitetônicas</h2>
+                </div>
+                <a class="mt-6 md:mt-0 text-xs font-bold uppercase tracking-[0.2em] text-primary hover:text-gray-900 dark:hover:text-white transition-colors inline-flex items-center gap-2 reveal stagger-2 group" href="#">
+                    Ver Todos
+                    <span class="material-symbols-outlined transition-transform duration-300 group-hover:translate-x-1">arrow_forward</span>
+                </a>
+            </div>
+
+            <div class="portfolio-grid">
+                <!-- Item 1 - Grande -->
+                <div class="portfolio-item portfolio-hover aspect-[4/3] md:aspect-auto reveal cursor-pointer">
+                    <img alt="Residência Aurora" class="w-full h-full object-cover" src="https://kimi-web-img.moonshot.cn/img/thumbs.dreamstime.com/7965e9479c74e096d43cea26056f06b28fd3cb29.jpg"/>
+                    <div class="portfolio-overlay"></div>
+                    <div class="portfolio-content">
+                        <p class="text-primary text-[10px] uppercase tracking-[0.3em] mb-2">Residencial</p>
+                        <h3 class="text-white font-display text-2xl font-bold uppercase tracking-wider">Residência Aurora</h3>
+                        <p class="text-white/70 text-xs mt-2">Curitiba • 2024</p>
+                    </div>
+                </div>
+
+                <!-- Item 2 -->
+                <div class="portfolio-item portfolio-hover aspect-[4/3] reveal stagger-1 cursor-pointer">
+                    <img alt="Edifício Nexus" class="w-full h-full object-cover" src="https://kimi-web-img.moonshot.cn/img/www.decorilla.com/729e9d3893c407194607636ce9d0c1a5b5edee9d.jpg"/>
+                    <div class="portfolio-overlay"></div>
+                    <div class="portfolio-content">
+                        <p class="text-primary text-[10px] uppercase tracking-[0.3em] mb-2">Corporativo</p>
+                        <h3 class="text-white font-display text-xl font-bold uppercase tracking-wider">Edifício Nexus</h3>
+                        <p class="text-white/70 text-xs mt-2">São Paulo • 2023</p>
+                    </div>
+                </div>
+
+                <!-- Item 3 -->
+                <div class="portfolio-item portfolio-hover aspect-[4/3] reveal stagger-2 cursor-pointer">
+                    <img alt="Villa Serena" class="w-full h-full object-cover" src="https://kimi-web-img.moonshot.cn/img/media.architecturaldigest.com/353a1b7f65a062a40497cf96e402a5149a59b419.jpg"/>
+                    <div class="portfolio-overlay"></div>
+                    <div class="portfolio-content">
+                        <p class="text-primary text-[10px] uppercase tracking-[0.3em] mb-2">Interiores</p>
+                        <h3 class="text-white font-display text-xl font-bold uppercase tracking-wider">Villa Serena</h3>
+                        <p class="text-white/70 text-xs mt-2">Rio de Janeiro • 2024</p>
+                    </div>
+                </div>
+
+                <!-- Item 4 -->
+                <div class="portfolio-item portfolio-hover aspect-[4/3] reveal cursor-pointer">
+                    <img alt="Casa do Lago" class="w-full h-full object-cover" src="https://kimi-web-img.moonshot.cn/img/thumbs.dreamstime.com/547e897f1297b414fc6289ef21c05459e54f3187.jpg"/>
+                    <div class="portfolio-overlay"></div>
+                    <div class="portfolio-content">
+                        <p class="text-primary text-[10px] uppercase tracking-[0.3em] mb-2">Residencial</p>
+                        <h3 class="text-white font-display text-lg font-bold uppercase tracking-wider">Casa do Lago</h3>
+                        <p class="text-white/70 text-xs mt-2">Florianópolis • 2023</p>
+                    </div>
+                </div>
+
+                <!-- Item 5 -->
+                <div class="portfolio-item portfolio-hover aspect-[4/3] reveal stagger-1 cursor-pointer">
+                    <img alt="Espaço Cultural" class="w-full h-full object-cover" src="https://kimi-web-img.moonshot.cn/img/t4.ftcdn.net/22a7bccb043fcfa634438a9b03fd3f8380c0e3a5.jpg"/>
+                    <div class="portfolio-overlay"></div>
+                    <div class="portfolio-content">
+                        <p class="text-primary text-[10px] uppercase tracking-[0.3em] mb-2">Institucional</p>
+                        <h3 class="text-white font-display text-lg font-bold uppercase tracking-wider">Espaço Cultural</h3>
+                        <p class="text-white/70 text-xs mt-2">Belo Horizonte • 2022</p>
+                    </div>
+                </div>
+
+                <!-- Item 6 -->
+                <div class="portfolio-item portfolio-hover aspect-[4/3] reveal stagger-2 cursor-pointer">
+                    <img alt="Penthouse Luxo" class="w-full h-full object-cover" src="https://kimi-web-img.moonshot.cn/img/webflow-assets2.redokun.com/ebcf29717c893c001b34c234d0a6ff4a305e00d8.jpeg"/>
+                    <div class="portfolio-overlay"></div>
+                    <div class="portfolio-content">
+                        <p class="text-primary text-[10px] uppercase tracking-[0.3em] mb-2">Alto Padrão</p>
+                        <h3 class="text-white font-display text-lg font-bold uppercase tracking-wider">Penthouse Luxo</h3>
+                        <p class="text-white/70 text-xs mt-2">São Paulo • 2024</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SOBRE (COM CONTADORES) -->
+    <section class="py-32 bg-warm-gray dark:bg-accent-dark overflow-hidden" id="about">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="grid md:grid-cols-2 gap-20 items-center">
+                <div class="relative group reveal">
+                    <div class="absolute -top-8 -left-8 w-full h-full border border-primary/30 -z-10 transition-transform duration-700 group-hover:translate-x-2 group-hover:translate-y-2"></div>
+                    <div class="aspect-[4/5] overflow-hidden shadow-2xl">
+                        <img alt="Arquiteta Líder" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105 grayscale hover:grayscale-0" src="https://kimi-web-img.moonshot.cn/img/webflow-assets2.redokun.com/8d1f0afd63338d0363f95f8a5d75dd2b736000ce.jpeg"/>
+                    </div>
+                    <div class="absolute -bottom-6 -right-6 bg-primary px-8 py-6 shadow-xl reveal stagger-2">
+                        <p class="text-white font-display font-bold uppercase tracking-widest text-xs">Ana Carolina</p>
+                        <p class="text-white/80 text-[10px] uppercase tracking-tighter mt-1">Arquiteta Fundadora</p>
+                    </div>
+                </div>
+
+                <div class="space-y-8 reveal-right">
+                    <div>
+                        <span class="text-primary font-display font-semibold uppercase tracking-[0.3em] text-xs reveal">Desde 2012</span>
+                        <h2 class="font-display text-4xl md:text-5xl font-bold uppercase mt-4 mb-6 leading-tight reveal stagger-1">
+                            Excelência em<br/>
+                            <span class="text-primary">Cada Traço</span>
+                        </h2>
+                    </div>
+
+                    <div class="space-y-6 text-gray-600 dark:text-gray-400 font-light leading-relaxed text-lg">
+                        <p class="reveal stagger-2">
+                            Como arquiteta líder, acredito que o design de excelência nasce da harmonia entre funcionalidade rigorosa e sensibilidade estética. Cada projeto é uma oportunidade de criar espaços que elevam a experiência humana.
+                        </p>
+                        <p class="reveal stagger-3">
+                            Com mais de uma década de experiência no mercado de alto padrão, tratamos cada obra como única, onde a precisão técnica se une à visão criativa para materializar os sonhos mais ambiciosos.
+                        </p>
+                    </div>
+
+                    <!-- CONTADORES ANIMADOS -->
+                    <div class="grid grid-cols-3 gap-8 pt-8 border-t border-gray-300 dark:border-gray-700 reveal stagger-4">
+                        <div class="text-center">
+                            <p class="text-4xl font-display font-bold text-primary counter" data-target="150">0</p>
+                            <p class="text-[10px] uppercase tracking-widest text-gray-500 font-bold mt-2">Projetos</p>
+                        </div>
+                        <div class="text-center">
+                            <p class="text-4xl font-display font-bold text-primary counter" data-target="12">0</p>
+                            <p class="text-[10px] uppercase tracking-widest text-gray-500 font-bold mt-2">Prêmios</p>
+                        </div>
+                        <div class="text-center">
+                            <p class="text-4xl font-display font-bold text-primary counter" data-target="98">0</p>
+                            <p class="text-[10px] uppercase tracking-widest text-gray-500 font-bold mt-2">% Satisfação</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- PROCESSO DE TRABALHO -->
+    <section class="py-32 bg-white dark:bg-background-dark relative">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="text-center mb-20">
+                <span class="text-primary text-[10px] font-bold uppercase tracking-[0.4em] block mb-4 reveal">Como Trabalhamos</span>
+                <h2 class="font-display text-4xl md:text-5xl font-bold uppercase reveal stagger-1">Nosso Processo</h2>
+            </div>
+
+            <div class="relative">
+                <div class="timeline-line hidden md:block"></div>
+                
+                <div class="grid md:grid-cols-4 gap-8">
+                    <div class="text-center md:text-left md:odd:text-right md:even:mt-16 reveal">
+                        <div class="w-12 h-12 rounded-full bg-primary text-white flex items-center justify-center font-display font-bold text-lg mx-auto md:mx-0 md:ml-auto md:odd:ml-0 md:odd:mr-auto mb-4">01</div>
+                        <h3 class="font-display font-bold uppercase tracking-wider mb-2">Consultoria</h3>
+                        <p class="text-sm text-gray-500 dark:text-gray-400 font-light">Entendemos suas necessidades e sonhos para criar a base do projeto.</p>
+                    </div>
+
+                    <div class="text-center md:text-left md:odd:text-right md:even:mt-16 reveal stagger-1">
+                        <div class="w-12 h-12 rounded-full bg-primary/20 text-primary flex items-center justify-center font-display font-bold text-lg mx-auto md:mx-0 md:ml-auto md:odd:ml-0 md:odd:mr-auto mb-4">02</div>
+                        <h3 class="font-display font-bold uppercase tracking-wider mb-2">Concepção</h3>
+                        <p class="text-sm text-gray-500 dark:text-gray-400 font-light">Desenvolvemos conceitos criativos e soluções arquitetônicas inovadoras.</p>
+                    </div>
+
+                    <div class="text-center md:text-left md:odd:text-right md:even:mt-16 reveal stagger-2">
+                        <div class="w-12 h-12 rounded-full bg-primary/20 text-primary flex items-center justify-center font-display font-bold text-lg mx-auto md:mx-0 md:ml-auto md:odd:ml-0 md:odd:mr-auto mb-4">03</div>
+                        <h3 class="font-display font-bold uppercase tracking-wider mb-2">Detalhamento</h3>
+                        <p class="text-sm text-gray-500 dark:text-gray-400 font-light">Documentação técnica completa com especificações precisas.</p>
+                    </div>
+
+                    <div class="text-center md:text-left md:odd:text-right md:even:mt-16 reveal stagger-3">
+                        <div class="w-12 h-12 rounded-full bg-primary/20 text-primary flex items-center justify-center font-display font-bold text-lg mx-auto md:mx-0 md:ml-auto md:odd:ml-0 md:odd:mr-auto mb-4">04</div>
+                        <h3 class="font-display font-bold uppercase tracking-wider mb-2">Execução</h3>
+                        <p class="text-sm text-gray-500 dark:text-gray-400 font-light">Acompanhamento rigoroso da obra até a entrega final.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SERVIÇOS -->
+    <section class="py-32 bg-warm-gray dark:bg-accent-dark" id="services">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="text-center mb-16">
+                <span class="text-primary text-[10px] font-bold uppercase tracking-[0.4em] block mb-4 reveal">Especialidades</span>
+                <h2 class="font-display text-4xl md:text-5xl font-bold uppercase mb-4 reveal stagger-1">Serviços</h2>
+                <div class="w-16 h-0.5 bg-primary mx-auto reveal stagger-2"></div>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                <div class="group bg-white dark:bg-background-dark p-8 hover:bg-primary transition-all duration-500 cursor-pointer reveal">
+                    <span class="material-symbols-outlined text-4xl text-primary group-hover:text-white transition-colors duration-300 mb-6 block">draw</span>
+                    <h3 class="font-display font-bold uppercase tracking-wider mb-3 group-hover:text-white transition-colors">Projetos Técnicos</h3>
+                    <p class="text-sm text-gray-500 dark:text-gray-400 font-light group-hover:text-white/80 transition-colors">Arquitetura detalhada e projetos executivos com máxima precisão técnica.</p>
+                </div>
+
+                <div class="group bg-white dark:bg-background-dark p-8 hover:bg-primary transition-all duration-500 cursor-pointer reveal stagger-1">
+                    <span class="material-symbols-outlined text-4xl text-primary group-hover:text-white transition-colors duration-300 mb-6 block">view_in_ar</span>
+                    <h3 class="font-display font-bold uppercase tracking-wider mb-3 group-hover:text-white transition-colors">Modelagem 3D</h3>
+                    <p class="text-sm text-gray-500 dark:text-gray-400 font-light group-hover:text-white/80 transition-colors">Visualização realista que permite sentir o espaço antes de construir.</p>
+                </div>
+
+                <div class="group bg-white dark:bg-background-dark p-8 hover:bg-primary transition-all duration-500 cursor-pointer reveal stagger-2">
+                    <span class="material-symbols-outlined text-4xl text-primary group-hover:text-white transition-colors duration-300 mb-6 block">architecture</span>
+                    <h3 class="font-display font-bold uppercase tracking-wider mb-3 group-hover:text-white transition-colors">Detalhamento</h3>
+                    <p class="text-sm text-gray-500 dark:text-gray-400 font-light group-hover:text-white/80 transition-colors">Documentação executiva completa para fidelidade absoluta do projeto.</p>
+                </div>
+
+                <div class="group bg-white dark:bg-background-dark p-8 hover:bg-primary transition-all duration-500 cursor-pointer reveal stagger-3">
+                    <span class="material-symbols-outlined text-4xl text-primary group-hover:text-white transition-colors duration-300 mb-6 block">groups</span>
+                    <h3 class="font-display font-bold uppercase tracking-wider mb-3 group-hover:text-white transition-colors">Consultoria</h3>
+                    <p class="text-sm text-gray-500 dark:text-gray-400 font-light group-hover:text-white/80 transition-colors">Orientação estratégica para transformar necessidades em soluções elegantes.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- DEPOIMENTOS -->
+    <section class="py-32 bg-white dark:bg-background-dark">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="text-center mb-16">
+                <span class="text-primary text-[10px] font-bold uppercase tracking-[0.4em] block mb-4 reveal">Depoimentos</span>
+                <h2 class="font-display text-4xl md:text-5xl font-bold uppercase reveal stagger-1">O que Dizem</h2>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div class="bg-warm-gray dark:bg-accent-dark p-10 relative reveal">
+                    <span class="absolute top-6 right-6 text-6xl text-primary/20 font-display">"</span>
+                    <p class="text-gray-600 dark:text-gray-300 italic mb-8 leading-relaxed relative z-10">"O Studio Arch transformou nossa casa em um refúgio de paz. A atenção aos detalhes foi fundamental para o resultado impecável."</p>
+                    <div class="flex items-center gap-4">
+                        <div class="w-12 h-12 rounded-full bg-primary/20 flex items-center justify-center">
+                            <span class="font-display font-bold text-primary">MS</span>
+                        </div>
+                        <div>
+                            <h4 class="font-display font-bold uppercase text-sm tracking-wider">Marcos Silva</h4>
+                            <p class="text-[10px] text-primary uppercase tracking-widest">Empresário</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-primary text-white p-10 relative transform md:-translate-y-4 shadow-2xl reveal stagger-1">
+                    <span class="absolute top-6 right-6 text-6xl text-white/20 font-display">"</span>
+                    <p class="italic mb-8 leading-relaxed relative z-10">"O cuidado com os detalhes e a entrega impecável superaram todas as expectativas para nossa nova sede corporativa."</p>
+                    <div class="flex items-center gap-4">
+                        <div class="w-12 h-12 rounded-full bg-white/20 flex items-center justify-center">
+                            <span class="font-display font-bold">CM</span>
+                        </div>
+                        <div>
+                            <h4 class="font-display font-bold uppercase text-sm tracking-wider">Carla Mendes</h4>
+                            <p class="text-[10px] text-white/80 uppercase tracking-widest">Diretora Executiva</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-warm-gray dark:bg-accent-dark p-10 relative reveal stagger-2">
+                    <span class="absolute top-6 right-6 text-6xl text-primary/20 font-display">"</span>
+                    <p class="text-gray-600 dark:text-gray-300 italic mb-8 leading-relaxed relative z-10">"Profissionalismo e visão técnica de alto nível. Recomendo para qualquer projeto que exija sofisticação."</p>
+                    <div class="flex items-center gap-4">
+                        <div class="w-12 h-12 rounded-full bg-primary/20 flex items-center justify-center">
+                            <span class="font-display font-bold text-primary">RL</span>
+                        </div>
+                        <div>
+                            <h4 class="font-display font-bold uppercase text-sm tracking-wider">Roberto Lima</h4>
+                            <p class="text-[10px] text-primary uppercase tracking-widest">Engenheiro Civil</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA FINAL -->
+    <section class="py-32 bg-black text-white relative overflow-hidden">
+        <div class="absolute inset-0 opacity-20">
+            <img alt="Background" class="w-full h-full object-cover" src="https://kimi-web-img.moonshot.cn/img/thumbs.dreamstime.com/837f804a7c5ba54175bdd817e204a2a32dc5fd25.jpg"/>
+        </div>
+        <div class="absolute inset-0 bg-gradient-to-r from-black via-black/90 to-transparent"></div>
+        
+        <div class="max-w-7xl mx-auto px-6 relative z-10">
+            <div class="max-w-2xl reveal">
+                <h2 class="font-display text-4xl md:text-6xl font-bold uppercase mb-6 leading-tight">
+                    Vamos criar algo<br/>
+                    <span class="text-primary">Extraordinário</span>?
+                </h2>
+                <p class="text-gray-400 text-lg mb-10 font-light">Entre em contato e descubra como podemos transformar seu espaço em uma obra de arte arquitetônica.</p>
+                <a class="btn-premium bg-primary text-white px-12 py-5 text-xs font-bold uppercase tracking-[0.2em] rounded-sm inline-flex items-center gap-3 group pulse-glow" href="#contact">
+                    Iniciar Projeto
+                    <span class="material-symbols-outlined transition-transform duration-300 group-hover:translate-x-1">arrow_forward</span>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="bg-black text-white pt-24 pb-12 border-t border-gray-900" id="contact">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-12 mb-20">
+                <div class="space-y-6 reveal">
+                    <div class="flex items-center gap-2">
+                        <span class="material-symbols-outlined text-primary text-3xl">architecture</span>
+                        <div class="leading-none">
+                            <h1 class="font-display font-bold text-xl tracking-tighter uppercase">Studio</h1>
+                            <p class="font-display text-sm tracking-widest text-primary -mt-1">Arch</p>
+                        </div>
+                    </div>
+                    <p class="text-xs text-gray-500 leading-relaxed max-w-xs">
+                        Elevando o padrão da arquitetura moderna através de processos inovadores e design atemporal.
+                    </p>
+                </div>
+
+                <div class="space-y-6 reveal stagger-1">
+                    <h5 class="text-xs font-bold uppercase tracking-widest text-primary">Contato</h5>
+                    <ul class="text-xs text-gray-400 space-y-4">
+                        <li class="flex items-center gap-3 hover:text-white transition-colors cursor-pointer">
+                            <span class="material-symbols-outlined !text-sm">mail</span>
+                            contato@studioarch.com
+                        </li>
+                        <li class="flex items-center gap-3 hover:text-white transition-colors cursor-pointer">
+                            <span class="material-symbols-outlined !text-sm">call</span>
+                            +55 (41) 99999-0000
+                        </li>
+                        <li class="flex items-center gap-3 hover:text-white transition-colors cursor-pointer">
+                            <span class="material-symbols-outlined !text-sm">location_on</span>
+                            Curitiba, PR
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="space-y-6 reveal stagger-2">
+                    <h5 class="text-xs font-bold uppercase tracking-widest text-primary">Links</h5>
+                    <ul class="text-xs text-gray-400 space-y-4">
+                        <li><a class="hover:text-white transition-colors" href="#portfolio">Portfólio</a></li>
+                        <li><a class="hover:text-white transition-colors" href="#services">Serviços</a></li>
+                        <li><a class="hover:text-white transition-colors" href="#about">Sobre</a></li>
+                    </ul>
+                </div>
+
+                <div class="space-y-6 reveal stagger-3">
+                    <h5 class="text-xs font-bold uppercase tracking-widest text-primary">Social</h5>
+                    <div class="flex gap-4">
+                        <a class="w-10 h-10 rounded-full border border-gray-800 flex items-center justify-center hover:bg-primary hover:border-primary transition-all duration-300" href="#">
+                            <span class="material-symbols-outlined !text-lg">photo_camera</span>
+                        </a>
+                        <a class="w-10 h-10 rounded-full border border-gray-800 flex items-center justify-center hover:bg-primary hover:border-primary transition-all duration-300" href="#">
+                            <span class="material-symbols-outlined !text-lg">business</span>
+                        </a>
+                        <a class="w-10 h-10 rounded-full border border-gray-800 flex items-center justify-center hover:bg-primary hover:border-primary transition-all duration-300" href="#">
+                            <span class="material-symbols-outlined !text-lg">chat</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pt-12 border-t border-gray-900 flex flex-col md:flex-row justify-between items-center gap-4 text-[10px] text-gray-600 uppercase tracking-widest reveal">
+                <p>© 2024 Studio Arch. Todos os direitos reservados.</p>
+                <div class="flex gap-8">
+                    <a class="hover:text-white transition-colors" href="#">Privacidade</a>
+                    <a class="hover:text-white transition-colors" href="#">Termos</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- BACK TO TOP -->
+    <a class="fixed bottom-8 right-8 w-12 h-12 bg-primary text-white flex items-center justify-center rounded-sm shadow-2xl z-40 hover:-translate-y-1 transition-transform duration-300 opacity-0 pointer-events-none" href="#" id="backToTop">
+        <span class="material-symbols-outlined">expand_less</span>
+    </a>
+
+    <script>
+        // CURSOR PERSONALIZADO
+        const cursor = document.getElementById('cursor');
+        const links = document.querySelectorAll('a, button, .cursor-pointer');
+
+        document.addEventListener('mousemove', (e) => {
+            cursor.style.left = e.clientX - 10 + 'px';
+            cursor.style.top = e.clientY - 10 + 'px';
+        });
+
+        links.forEach(link => {
+            link.addEventListener('mouseenter', () => cursor.classList.add('hover'));
+            link.addEventListener('mouseleave', () => cursor.classList.remove('hover'));
+        });
+
+        // NAVBAR SCROLL EFFECT
+        const navbar = document.getElementById('navbar');
+        let lastScroll = 0;
+
+        window.addEventListener('scroll', () => {
+            const currentScroll = window.pageYOffset;
+            
+            if (currentScroll > 50) {
+                navbar.classList.remove('navbar-glass');
+                navbar.classList.add('navbar-solid');
+            } else {
+                navbar.classList.add('navbar-glass');
+                navbar.classList.remove('navbar-solid');
+            }
+            
+            lastScroll = currentScroll;
+        });
+
+        // MOBILE MENU
+        const menuBtn = document.getElementById('menuBtn');
+        const mobileMenu = document.getElementById('mobileMenu');
+        const mobileLinks = document.querySelectorAll('.mobile-link');
+        let menuOpen = false;
+
+        menuBtn.addEventListener('click', () => {
+            menuOpen = !menuOpen;
+            mobileMenu.classList.toggle('active');
+            menuBtn.textContent = menuOpen ? 'close' : 'menu';
+        });
+
+        mobileLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                menuOpen = false;
+                mobileMenu.classList.remove('active');
+                menuBtn.textContent = 'menu';
+            });
+        });
+
+        // PARALLAX HERO
+        const heroBg = document.getElementById('heroBg');
+        window.addEventListener('scroll', () => {
+            const scrolled = window.pageYOffset;
+            heroBg.style.transform = `translateY(${scrolled * 0.5}px)`;
+        });
+
+        // INTERSECTION OBSERVER PARA ANIMAÇÕES
+        const observerOptions = {
+            root: null,
+            rootMargin: '0px',
+            threshold: 0.1
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('active');
+                    
+                    // Iniciar contadores quando visíveis
+                    if (entry.target.querySelector('.counter')) {
+                        startCounters(entry.target);
+                    }
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.reveal, .reveal-right').forEach(el => {
+            observer.observe(el);
+        });
+
+        // CONTADORES ANIMADOS
+        function startCounters(container) {
+            const counters = container.querySelectorAll('.counter');
+            counters.forEach(counter => {
+                const target = parseInt(counter.getAttribute('data-target'));
+                const duration = 2000;
+                const step = target / (duration / 16);
+                let current = 0;
+                
+                const updateCounter = () => {
+                    current += step;
+                    if (current < target) {
+                        counter.textContent = Math.floor(current) + (target === 98 ? '%' : '+');
+                        requestAnimationFrame(updateCounter);
+                    } else {
+                        counter.textContent = target + (target === 98 ? '%' : '+');
+                    }
+                };
+                
+                updateCounter();
+            });
+        }
+
+        // BACK TO TOP
+        const backToTop = document.getElementById('backToTop');
+        window.addEventListener('scroll', () => {
+            if (window.pageYOffset > 500) {
+                backToTop.classList.remove('opacity-0', 'pointer-events-none');
+            } else {
+                backToTop.classList.add('opacity-0', 'pointer-events-none');
+            }
+        });
+
+        // SMOOTH SCROLL
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    const offset = 80;
+                    const targetPosition = target.getBoundingClientRect().top + window.pageYOffset - offset;
+                    
+                    window.scrollTo({
+                        top: targetPosition,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+
+        // ACTIVE NAV LINK
+        const sections = document.querySelectorAll('section');
+        const navLinks = document.querySelectorAll('.nav-link');
+
+        window.addEventListener('scroll', () => {
+            let current = '';
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop;
+                if (pageYOffset >= sectionTop - 200) {
+                    current = section.getAttribute('id');
+                }
+            });
+
+            navLinks.forEach(link => {
+                link.classList.remove('active');
+                if (link.getAttribute('href') === '#' + current) {
+                    link.classList.add('active');
+                }
+            });
+        });
+    </script>
 </body>
 </html>
